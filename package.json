@@ -1,0 +1,26 @@
+{
+  "name": "yelpcamp",
+  "version": "1.0.0",
+  "description": "Node.js website to test New Relic agent against",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlangdon90/YelpCamp.git"
+  },
+  "author": "Jared Langdon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jlangdon90/YelpCamp/issues"
+  },
+  "homepage": "https://github.com/jlangdon90/YelpCamp#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "mongoose": "^4.12.3",
+    "newrelic": "^2.5.0"
+  }
+}
