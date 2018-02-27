@@ -1,4 +1,5 @@
 require('newrelic');
+require('dotenv').config();
 var express     = require('express'),
     app         = express(),
     bodyParser  = require('body-parser'),
@@ -10,7 +11,7 @@ var express     = require('express'),
 
 //<!-- Connect MongoDB and set some connection details -->
 mongoose.Promise=global.Promise;
-mongoose.connect("mongodb://yelpcamp-gc:admin@ds143907.mlab.com:43907/yelpcamp-gc", {useMongoClient: true});
+mongoose.connect(process.env.MONGO_DB_CONNECTION_STRING, {useMongoClient: true});
 seedDB();
 
 //<!-- define other environment settings -->
