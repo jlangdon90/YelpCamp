@@ -141,6 +141,19 @@ app.post("/register", function(req, res){
   });
 });
 
+//show login form
+app.get("/login", function(req, res){
+  res.render("login");
+});
+
+//handle login logic
+app.post("/login", passport.authenticate("local", 
+  { successRedirect: "/campgrounds", 
+    failureRedirect: "/login"
+  }), function(req, res){
+    //nothing needed here, our redirect logic is above
+});
+
 //<!-- **********  Final server startup *********** -->
 app.listen(8000, function(){
   console.log("YelpCamp server has started on localhost:8000");
