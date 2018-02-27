@@ -1,12 +1,15 @@
 require('newrelic');
 require('dotenv').config();
-var express     = require('express'),
-    app         = express(),
-    bodyParser  = require('body-parser'),
-    mongoose    = require('mongoose'),
-    Campground  = require('./models/campground'),
-    Comment     = require('./models/comment'),
-    seedDB      = require('./seeds');
+var express       = require('express'),
+    app           = express(),
+    bodyParser    = require('body-parser'),
+    mongoose      = require('mongoose'),
+    Campground    = require('./models/campground'),
+    Comment       = require('./models/comment'),
+    seedDB        = require('./seeds'), 
+    passport      = require('passport'),
+    User          = require('./models/user'),
+    LocalStrategy = require('passport-local');
 
 
 //<!-- Connect MongoDB and set some connection details -->
