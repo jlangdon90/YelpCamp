@@ -7,9 +7,7 @@ var User        = require("../models/user");
 
 //<!-- Base route -->
 router.get("/", function(req, res){
-    //res.render("landing");
-    //redirect to /campgrounds for now, it's a prettier page
-    res.redirect("/campgrounds");
+    res.render("landing");
 });
 
 //show register form

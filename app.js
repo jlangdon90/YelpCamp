@@ -1,5 +1,6 @@
 require('newrelic');
 require('dotenv').config();
+
 var express       = require('express'),
     app           = express(),
     bodyParser    = require('body-parser'),
@@ -9,7 +10,8 @@ var express       = require('express'),
     seedDB        = require('./seeds'), 
     passport      = require('passport'),
     User          = require('./models/user'),
-    LocalStrategy = require('passport-local');
+    LocalStrategy = require('passport-local'),
+    methodOverride= require('method-override');
 
 var campgroundRoutes  = require("./routes/campgrounds"),
     commentRoutes     = require("./routes/comments"),
@@ -38,6 +40,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname+"/public"));
+app.use(methodOverride("_method"));
 
 //pass our current user object to every route
 app.use(function(req, res, next){

@@ -1,5 +1,3 @@
-import { mongo } from 'mongoose';
-
 //Campground schema definition
 var mongoose = require('mongoose');
 
