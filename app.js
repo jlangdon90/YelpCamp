@@ -20,7 +20,7 @@ mongoose.Promise=global.Promise;
 mongoose.connect(process.env.MONGO_DB_CONNECTION_STRING, {useMongoClient: true});
 
 //after first application run, comment out the below code to avoid reseeding the DB every time you restart the application
-seedDB();
+//seedDB();
 
 // Passport configuration
 app.use(require("express-session")({
