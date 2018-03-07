@@ -3,7 +3,7 @@
 var concat = require('concat-stream')
 var http = require('http')
 var logger = require('../logger').child({component: 'utilization-request'})
-var fs = require('fs')
+var fs = require('../util/unwrapped-core').fs
 var properties = require('../util/properties')
 
 
@@ -28,7 +28,7 @@ exports.getKeys = function getKeys(data, keys) {
     return null
   }
 
-  var results = {}
+  var results = Object.create(null)
   for (var i = 0; i < keys.length; ++i) {
     var key = keys[i]
     if (!properties.hasOwn(data, key) || !data[key]) {
