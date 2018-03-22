@@ -1,4 +1,5 @@
-require('newrelic');
+var newrelic      = require('newrelic');
+
 require('dotenv').config();
 
 var express       = require('express'),
@@ -9,6 +10,7 @@ var express       = require('express'),
     Comment       = require('./models/comment'),
     seedDB        = require('./seeds'), 
     passport      = require('passport'),
+    flash         = require('connect-flash'),
     User          = require('./models/user'),
     LocalStrategy = require('passport-local'),
     methodOverride= require('method-override');
@@ -22,7 +24,7 @@ mongoose.Promise=global.Promise;
 mongoose.connect(process.env.MONGO_DB_CONNECTION_STRING, {useMongoClient: true});
 
 //after first application run, comment out the below code to avoid reseeding the DB every time you restart the application
-//seedDB();
+seedDB();
 
 // Passport configuration
 app.use(require("express-session")({
@@ -30,6 +32,7 @@ app.use(require("express-session")({
   resave: false,
   saveUninitialized: false
 }));
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
@@ -42,9 +45,12 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname+"/public"));
 app.use(methodOverride("_method"));
 
+
 //pass our current user object to every route
 app.use(function(req, res, next){
   res.locals.currentUser = req.user;
+  res.locals.error = req.flash("error");
+  res.locals.success = req.flash("success");
   next();
 });
 
