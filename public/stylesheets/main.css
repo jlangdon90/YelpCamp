@@ -12,3 +12,10 @@
 .delete-form{
     display: inline
 }
+
+/* Google Maps */
+#map {
+    margin-top: 20px;
+    height: 400px;
+    width: 100%;
+}

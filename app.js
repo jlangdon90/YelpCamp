@@ -24,7 +24,7 @@ mongoose.Promise=global.Promise;
 mongoose.connect(process.env.MONGO_DB_CONNECTION_STRING, {useMongoClient: true});
 
 //after first application run, comment out the below code to avoid reseeding the DB every time you restart the application
-seedDB();
+//seedDB();
 
 // Passport configuration
 app.use(require("express-session")({
@@ -48,6 +48,7 @@ app.use(methodOverride("_method"));
 
 //pass our current user object to every route
 app.use(function(req, res, next){
+  res.locals.newrelic = newrelic;
   res.locals.currentUser = req.user;
   res.locals.error = req.flash("error");
   res.locals.success = req.flash("success");
