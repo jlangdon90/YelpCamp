@@ -26,6 +26,7 @@ mongoose.connect(process.env.MONGO_DB_CONNECTION_STRING, {useMongoClient: true})
 //after first application run, comment out the below code to avoid reseeding the DB every time you restart the application
 //seedDB();
 
+app.set('port', (process.env.PORT || 8000));
 // Passport configuration
 app.use(require("express-session")({
   secret: "this is a pretty basic Express app",
@@ -63,6 +64,6 @@ app.use("/campgrounds/:id/comments", commentRoutes);
 app.use(indexRoutes);
 
 //<!-- **********  Final server startup *********** -->
-app.listen(process.env.$PORT || 8000, function(){
-  console.log("YelpCamp server has started on " + process.env.$PORT);
+app.listen(app.get('port'), function(){
+  console.log("YelpCamp server has started on " + app.get('port'));;
 });
