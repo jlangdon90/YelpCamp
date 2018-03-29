@@ -70,6 +70,10 @@ router.get("/users/:id", function(req, res){
             res.redirect("/");
         } else {
             Campground.find().where('author.id').equals(foundUser._id).exec(function(err, campgrounds){
+                if(err){
+                    req.flash("error", "unable to locate user's campgrounds");
+                    res.redirect("back");
+                }
                 res.render("users/show", {user: foundUser, campgrounds: campgrounds});
             });
         }

@@ -63,6 +63,6 @@ app.use("/campgrounds/:id/comments", commentRoutes);
 app.use(indexRoutes);
 
 //<!-- **********  Final server startup *********** -->
-app.listen(8000, function(){
-  console.log("YelpCamp server has started on localhost:8000");
+app.listen(process.env.$PORT || 8000, function(){
+  console.log("YelpCamp server has started on " + process.env.$PORT);
 });
